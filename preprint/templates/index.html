@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>BioPreprints</title>
+    </head>
+    <body>
+        <h1>Biopreprints</h1>
+        <p>
+            Welcome, blah, blah
+        </p>
+        <h2>List of Preprint Servers</h2>
+        <ul>
+        {% for server in s %}
+            <li><b>{{ server.name }}</b> <a href="{{ server.url }}">{{ server.url }}</a><br/>
+                {{ server.notes }}
+                (<em>{% for field in server.fields_covered.all %}{{ field }}{% endfor %}</em>)
+        {% endfor %}
+        </ul>
+        <h2>Journal Database</h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Website</th>
+                <th>Preprint Policy</th>
+                <th>Notes</th>
+            </tr>
+        {% for journal in j %}
+            <tr>
+                <td><b>{{ journal.name }}</b>
+                <td><a href="{{ journal.url }}">{{ journal.url }}</a></td>
+                <td>{{ journal.get_preprint_policy_display }}</td>
+                <td>{{ journal.notes }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <h2>FAQ</h2>
+        <ul>
+        {% for faq in f %}
+            <li><em>{{ faq.q }}</em>
+                <br/>
+                {{ faq.a }}
+        {% endfor %}
+        </ul>
+    </body>
+</html>
